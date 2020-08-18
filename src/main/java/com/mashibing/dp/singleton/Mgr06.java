@@ -13,6 +13,7 @@ public class Mgr06 {
     }
 
     public static Mgr06 getInstance() {
+        // 外层可以不加判空，但是加了可以提高效率，因为多数情况下，这个对象已经new出来了，不用重复加锁。
         if (INSTANCE == null) {
             //双重检查
             synchronized (Mgr06.class) {
@@ -22,6 +23,10 @@ public class Mgr06 {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+
+                    // 1 . 给对象申请内存
+                    // 2 给对象成员变量初始化
+                    // 3 对象赋值给INSTANCE
                     INSTANCE = new Mgr06();
                 }
             }
